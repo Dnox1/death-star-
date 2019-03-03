@@ -1,0 +1,133 @@
+body {
+  padding: 0;
+  text-align: center;
+  background-image: url("../images/BGame.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 2.3rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+h2 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+p {
+  color: rgba(255, 255, 255, 0.8);
+
+}
+ol {
+  color: rgba(255, 255, 255, 0.8);
+  list-style-position: inside; 
+  padding-right:40px;
+  
+}
+ol li {
+  text-align: center;
+ 
+}
+
+ol li:first-child {
+  font-size: 2rem;
+}
+
+ol li:nth-child(2) {
+  font-size: 1.7rem;
+}
+
+ol li:nth-child(3) {
+  font-size: 1.4rem;
+}
+
+.logo {
+  margin: 0 auto;
+}
+/* .game-intro {
+  float: left;
+  padding: 0% 10%;
+  
+} */
+.container {
+  float: left;
+  margin: 20px;
+  width: 800px;
+  height: 800px;
+  background-color: rgba(255, 255, 255, 0.2)
+}
+.logo img{
+  width: 150px;
+}
+.death-star {
+  line-height: 0rem;  
+  margin-bottom: 50px;
+}
+
+#player, #dificult{
+  display: inline-flex;
+  align-content: space-between;
+  font-weight: bold;  
+}
+
+label {
+  width: 140px;;
+  margin: 0px 50px;
+  text-align: center;
+  line-height: 0em;
+  
+}
+#player img {
+  width: 50px;
+  height: 55px;
+  margin-left: 10px;  
+}
+
+
+#game-board {
+  float: left;
+  margin: 20px;
+  border: 1px solid white;
+}
+
+.ranking {
+  float: right;
+  width: 300px;
+  height: 800px;
+  margin: 20px;
+  margin-right: 70px;
+
+}
+ #name {
+   margin: 20px;
+ }
+/* .game-intro p {
+  font-size: 18px;
+  font-family: "Verdana"
+} */
+
+/* .logo-img {
+  width: 350px;
+} */
+
+/* .arrows-img {
+  width: 150px;
+} */
+
+/* body button {
+  font-size: 30px;
+  background-color: #870007;
+  color: #fff;
+  padding: 20px 40px;
+  border: 0;
+  box-shadow: 0;
+  border-radius: 5px;
+  margin-bottom: 20px;
+} */
+
+
+

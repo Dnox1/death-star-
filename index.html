@@ -3,13 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
   <link rel="stylesheet" href="./styles/reset.css">
-  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="../death-star-/styles/main.css">
+
+  <title>Document</title>
 </head>
 <body>
-  <script src="./scripts/personajes.js"></script>
-  <script src="./scripts/main.js"></script>
+<div class="container">
+  <div class="logo">
+    <img src="../death-star-/images/logoSW.png" alt="logo Star Wars">
+  </div>
+  <div class="death-star">
+    <h1>Death Star</h1>
+  </div>
+  <h2>Dificultad</h2>
+  <div id="dificult">
+    <label><input type="checkbox" id="cbox1facil" value="facil"><p>Fácil</p></label>
+    <label><input type="checkbox" id="cbox2medio" value="medio"><p>Medio</p></label>
+    <label><input type="checkbox" id="cbox3dificil" value="dificl"><p>Difícil</p></label>
+
+  </div>
+  <!-- <div>
+    <p>Modo de Juego</p>
+    <label><input type="checkbox" id="cbox4solitario" value="facil"><p>Fácil</p></label>
+    <label><input type="checkbox" id="cbox5" value="medio"><p>Medio</p></label>
+    <label><input type="checkbox" id="cbox1dificil" value="dificl"><p>Difícil</p></label>
+  </div> -->
+  <h2>Elige tu Jugador</h2>
+  <div id="player">
+    <label><input type="checkbox" id="cbox1Luke" value="luke"><img src="../death-star-/images/LukeImg.png" alt="logo Star Wars"><p>Luke Skywalker</p></label>
+    <label><input type="checkbox" id="cbox2Solo" value="solo"><img src="../death-star-/images/HanSoloImg.png" alt="logo Star Wars"><p>Han Solo</p></label>
+    <label><input type="checkbox" id="cbox3Vader" value="vader"><img src="../death-star-/images/DarthVaderImg.png" alt="logo Star Wars"><p>Darth Vader</p></label>
+  </div>
+  <div id="name"><input type="text" placeholder="Nombre" /></div>
+  <div>
+    <button id="start-button">Destroy the Star!</button>
+    <h2>May the force be with you!</h2>
+  </div>
+</div>
+<div id="game-board">
+  <canvas id="canvas" width="600" height="800"></canvas>
+</div>  
+
+<div class="ranking">
+  <h2>Ranking</h2>
+  <ol>
+    <li><p>150 David </p></li>
+    <li><p>120 Belén </p></li>
+    <li><p>100 Alvaro </p></li>
+    <li><p>80 Manuel </p></li>
+    <li><p>60 Maria </p></li>
+  </ol>
+</div>
+
+  <script type="text/javascript" src="./scripts/background.js"></script>
+  <script type="text/javascript" src="./scripts/bullets.js"></script>
+  <script type="text/javascript" src="./scripts/player.js"></script>
+  <script type="text/javascript" src="./scripts/obstacle.js"></script>
+  <script type="text/javascript" src="./scripts/game.js"></script>
+  <script type="text/javascript" src="../death-star-/scripts/index.js"></script>
 </body>
 </html>
