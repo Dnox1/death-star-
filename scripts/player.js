@@ -6,7 +6,7 @@ function Player(game) {
   this.x = this.game.canvas.width * 0.45;
   
   // guardar posición original (suelo)
-  this.y0 = this.game.canvas.height * 0.8;
+  this.y0 = this.game.canvas.height * 0.9;
   this.y = this.y0;
 
   this.img = new Image();
@@ -19,19 +19,20 @@ function Player(game) {
 
   // medidas de la imagen a representar en el canvas
   this.w = 50;
-  this.h = 75;
+  this.h = 50;
 
-  this.vy = 1;
+  this.vx = 1;
 
   this.bullets = [];
 
   this.setListeners();
 }
 
-var TOP_KEY = 38;
+// var TOP_KEY = 38;
 var RIGHT_KEY = 39
 var LEFT_KEY = 37
-var SPACE = 32;
+var SPACE = 32
+var PAUSE = 80
 
 Player.prototype.draw = function() {
   // Documentación drawImage:
@@ -51,7 +52,7 @@ Player.prototype.draw = function() {
   this.animateImg();
 
   this.bullets = this.bullets.filter(function(bullet) {
-    return bullet.x < this.game.canvas.width;
+    return bullet.y > 0;
   }.bind(this));
 
   this.bullets.forEach(function(bullet) {
@@ -70,7 +71,14 @@ Player.prototype.setListeners = function() {
       this.img.frameIndex = 1
     } else if (event.keyCode == SPACE) {
       this.shoot();
-    } else { this.img.frameIndex = 0}
+    } else if (event.keyCode == PAUSE) {
+      var pau = pau++
+      if (pau % 2 == 0) {
+        Game.prototype.stop()
+      } else {
+        Game.prototype.resume()
+      }
+    }
   }.bind(this);
 
   document.onkeyup = function(event){
@@ -114,4 +122,6 @@ Player.prototype.move = function() {
   //   this.vy += gravity;
   //   this.y += this.vy;
   // }
+  if ((this.x + this.h) >= this.game.canvas.width) {
+    this.x = this.game.canvas.width - this.h}
 };

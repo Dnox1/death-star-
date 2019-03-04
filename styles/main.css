@@ -129,5 +129,7 @@ label {
   margin-bottom: 20px;
 } */
 
-
+.noactive {
+  display:none;
+}
 

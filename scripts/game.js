@@ -23,8 +23,15 @@ Game.prototype.start = function() {
       this.generateObstacle();
     } 
 
+    if (this.framesCounter % 200 === 0) {
+      this.generateTorret();
+    }
+
     this.score += 0.01;
-    
+    if (this.score >= 10) {
+      this.gameWin();
+    }
+
     this.moveAll();
     this.draw();
 
@@ -34,11 +41,18 @@ Game.prototype.start = function() {
     if (this.isCollision()) {
       this.gameOver();
     }
+    if (this.isCollisionTorret()) {
+      this.gameOver();
+    }
   }.bind(this), 1000 / this.fps);
 };
 
 Game.prototype.stop = function() {
   clearInterval(this.interval);
+};
+
+Game.prototype.resume = function() {
+  setInterval(this.interval);
 };
 
 Game.prototype.gameOver = function() {
@@ -50,11 +64,17 @@ Game.prototype.gameOver = function() {
   }
 };
 
+Game.prototype.gameWin = function() {
+    this.stop();
+    alert("Tira la Bomba!");
+};
+
 Game.prototype.reset = function() {
   this.background = new Background(this);
   this.player = new Player(this);
   this.framesCounter = 0;
   this.obstacles = [];
+  this.torret = [];
   this.score = 0;
 };
 
@@ -71,14 +91,37 @@ Game.prototype.isCollision = function() {
   }.bind(this));
 };
 
+Game.prototype.isCollisionTorret = function() {
+  // colisiones genéricas 
+  // (p.x + p.w > o.x && o.x + o.w > p.x && p.y + p.h > o.y && o.y + o.h > p.y )
+  return this.torret.some(function(torret) {
+    return (
+      ((this.player.x + this.player.w) >= torret.x &&
+       this.player.x < (torret.x + torret.w) &&
+       this.player.y + (this.player.h) >= torret.y &&
+       (torret.y + torret.h) > this.player.y)
+    );
+  }.bind(this));
+};
+
 Game.prototype.clearObstacles = function() {
   this.obstacles = this.obstacles.filter(function(obstacle) {
     return obstacle.x >= 0;
   });
 };
 
+Game.prototype.clearTorret = function() {
+  this.torret = this.torret.filter(function(torret) {
+    return torret.x >= 0;
+  });
+};
+
 Game.prototype.generateObstacle = function() {
   this.obstacles.push(new Obstacle(this));
+};
+
+Game.prototype.generateTorret = function() {
+  this.torret.push(new Torret(this));
 };
 
 Game.prototype.clear = function() {
@@ -89,6 +132,7 @@ Game.prototype.draw = function() {
   this.background.draw();
   this.player.draw();
   this.obstacles.forEach(function(obstacle) { obstacle.draw(); });
+  this.torret.forEach(function(torret) { torret.draw(); });
   this.drawScore();  
 };
 
@@ -96,6 +140,8 @@ Game.prototype.moveAll = function() {
   this.background.move();
   this.player.move();
   this.obstacles.forEach(function(obstacle) { obstacle.move(); });
+  this.torret.forEach(function(torret) { torret.move(); });
+
 };
 
 Game.prototype.drawScore = function() {
