@@ -18,12 +18,13 @@ function Player(game) {
   this.img.frameIndex = 0;
 
   // medidas de la imagen a representar en el canvas
-  this.w = 50;
+  this.w = 54;
   this.h = 50;
 
   this.vx = 1;
 
   this.bullets = [];
+
 
   this.setListeners();
 }
@@ -65,18 +66,14 @@ Player.prototype.setListeners = function() {
   document.onkeydown = function(event) {
     if (event.keyCode === RIGHT_KEY && this.x < this.game.canvas.width) {
       this.x += 10;
-      this.img.frameIndex = 2      
+      this.img.frameIndex = 1      
     } else if (event.keyCode === LEFT_KEY && this.x > 0) {
       this.x -= 10;
-      this.img.frameIndex = 1
+      this.img.frameIndex = 2
     } else if (event.keyCode == SPACE) {
       this.shoot();
     } else if (event.keyCode == PAUSE) {
-      var pau = pau++
-      if (pau % 2 == 0) {
-        Game.prototype.stop()
-      } else {
-        Game.prototype.resume()
+      if(confirm("Game Paused, Resume?")) {
       }
     }
   }.bind(this);

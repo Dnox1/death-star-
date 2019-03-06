@@ -1,45 +1,10 @@
-function Obstacle(game) {
-  this.game = game;
-
-  this.w = Math.floor((Math.random()*200)+50);
-  this.h = 40;
-
-  this.dx = 0;
-  this.dy = 2;
-
-  this.x = 0;
-  this.y = 0;
-
-  this.x = Math.floor((Math.random()*this.game.canvas.width-this.w-100)+100)
-
-
-  // this.x = this.game.canvas.width;
-  // this.y = this.game.player.y0 - this.game.player.h - this.h - 5;
-}
-
-Obstacle.prototype.draw = function() {
-  this.game.ctx.fillStyle = "black";
-  this.game.ctx.fillRect(this.x + 3, this.y + 3, this.w, this.h);
-  this.game.ctx.fillStyle = "grey";
-  this.game.ctx.fillRect(this.x, this.y, this.w, this.h);
-};
-
-
-Obstacle.prototype.move = function() {
-  //this.x -= this.dx;
-  this.y += this.dy;
-};
-
-
-
-
 
 // - - - - - - - - - - - - - - - - - - - - - - //
 function Torret(game) {
   this.game = game;
 
-  this.w = 50;
-  this.h = 50;
+  this.w = 40;
+  this.h = 40;
 
   this.dx = 0;
   this.dy = 2;
@@ -49,8 +14,6 @@ function Torret(game) {
 
   this.xt = 10
   this.xf = 530
-  this.bulletstorrets = [];
-
   // this.x = this.game.canvas.width;
   // this.y = this.game.player.y0 - this.game.player.h - this.h - 5;
 }
@@ -79,11 +42,6 @@ Torret.prototype.draw = function() {
   this.game.ctx.fillStyle = "yellow";
   this.game.ctx.fillRect(this.xf + 5, this.y + 21, 25, 2);
   this.game.ctx.fillRect(this.xf + 5, this.y + 27, 25, 2);
-
-  this.bulletstorrets.forEach(function(bullet) {
-    bullet.draw();
-    bullet.move();
-  });
 }
   // this.game.ctx.fillStyle = "grey";
   // this.game.ctx.fillRect(this.xf, this.y, 50, 50);
@@ -94,14 +52,4 @@ Torret.prototype.draw = function() {
 Torret.prototype.move = function() {
   //this.x -= this.dx;
   this.y += this.dy;
-};
-
-Torret.prototype.shoot = function() {
-  var bullet = new BulletTorrets(this.game, this.x, this.y );
-  var bullet2 = new BulletTorrets(this.game, this.x + 530, this.y );
-
-
-  this.bulletstorrets.push(bullet);
-  this.bulletstorrets.push(bullet2);
-
 };

@@ -2,12 +2,13 @@ function Game(canvadId) {
   this.canvas = document.getElementById(canvadId);
   this.ctx = this.canvas.getContext("2d");
   this.fps = 60;
-
-
+  this.games = 0
+  this.name = document.getElementById("name").value;
   this.reset();
 }
 
 Game.prototype.start = function() {
+  this.games++;
   this.interval = setInterval(function() {
     this.clear();
 
@@ -27,8 +28,12 @@ Game.prototype.start = function() {
       this.generateTorret();
     }
 
+    if (this.framesCounter % 200 === 0) {
+      this.shootTorret();
+    }
+
     this.score += 0.01;
-    if (this.score >= 10) {
+    if (this.score >= 100) {
       this.gameWin();
     }
 
@@ -57,16 +62,27 @@ Game.prototype.resume = function() {
 
 Game.prototype.gameOver = function() {
   this.stop();
-  
-  if(confirm("GAME OVER. Play again?")) {
+  console.log("games: " + this.games + "  name: " + this.name + "  score: " + Math.floor(this.score))
+  ranking.push({ name: this.name, score: Math.floor(this.score)})
+  if (this.score > 20) {
+    if(confirm("GAME OVER." + "\n" + this.name +"Your Score is: " + Math.floor(this.score) + "\n" + "Play again?")){
+      // this.savePunctuation();
+      this.reset();
+      this.start();
+    }
+  }else {if(confirm("GAME OVER." + "\n" + this.name + "Your Score is: " + Math.floor(this.score) + "\n" + "Play again?")){
+    // this.savePunctuation();
     this.reset();
     this.start();
   }
+}
 };
 
 Game.prototype.gameWin = function() {
     this.stop();
     alert("Tira la Bomba!");
+    console.log("games: " + this.games + "  name: " + this.name + "  score: " + Math.floor(this.score))
+
 };
 
 Game.prototype.reset = function() {
@@ -84,9 +100,9 @@ Game.prototype.isCollision = function() {
   return this.obstacles.some(function(obstacle) {
     return (
       ((this.player.x + this.player.w) >= obstacle.x &&
-       this.player.x < (obstacle.x + obstacle.w) &&
-       this.player.y + (this.player.h) >= obstacle.y &&
-       (obstacle.y + obstacle.h) > this.player.y)
+       this.player.x <= (obstacle.x + obstacle.w) &&
+       (this.player.y + this.player.h) >= obstacle.y &&
+       (obstacle.y + obstacle.h) >= this.player.y)
     );
   }.bind(this));
 };
@@ -97,9 +113,9 @@ Game.prototype.isCollisionTorret = function() {
   return this.torret.some(function(torret) {
     return (
       ((this.player.x + this.player.w) >= torret.x &&
-       this.player.x < (torret.x + torret.w) &&
-       this.player.y + (this.player.h) >= torret.y &&
-       (torret.y + torret.h) > this.player.y)
+       this.player.x <= (torret.x + torret.w) &&
+       (this.player.y + this.player.h) >= torret.y &&
+       (torret.y + torret.h) >= this.player.y)
     );
   }.bind(this));
 };
@@ -115,13 +131,23 @@ Game.prototype.clearTorret = function() {
     return torret.x >= 0;
   });
 };
+// Game.prototype.savePunctuation = function() {
+//    this.function.push(this.name, this.score);
+// };
 
 Game.prototype.generateObstacle = function() {
   this.obstacles.push(new Obstacle(this));
+  
 };
 
 Game.prototype.generateTorret = function() {
   this.torret.push(new Torret(this));
+};
+
+Game.prototype.shootTorret = function() {
+  if (this.torret && this.torret.length > 0) {
+    this.torret.forEach(function(torret) { torret.shoot(); });
+  }
 };
 
 Game.prototype.clear = function() {
