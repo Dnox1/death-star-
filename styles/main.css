@@ -94,7 +94,7 @@ label {
   border: 1px solid white;
 }
 
-.ranking {
+.rankinglist {
   float: right;
   width: 300px;
   height: 800px;
@@ -132,4 +132,5 @@ label {
 .noactive {
   display:none;
 }
+
 
