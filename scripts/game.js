@@ -52,12 +52,25 @@ Game.prototype.start = function() {
       this.gameOver();
     }
 
+    if (this.isCollision(this.player, this.darthvader.arrayBullets)) {
+      this.gameOver();
+    }
+
     this.torret.forEach(function(torret) {
-      if (this.isCollision(this.player,torret.bulletstorret)) {
+      if (this.isCollision(this.player, torret.bulletstorret)) {
         this.gameOver();
       }
     }.bind(this));
     
+
+    // // this.torret.forEach(function(torret) {
+    if (this.isCollision(this.player.bullets, this.torret)) {
+      this.score += 10  ;
+    }
+        // console.log("colision");
+        // this.destroyTorret(this.torret);
+      // }
+    // }.bind(this));
 
   }.bind(this), 1000 / this.fps);
 };
@@ -73,21 +86,12 @@ Game.prototype.resume = function() {
 Game.prototype.gameOver = function() {
   this.stop();
   ranking.push({ name: this.name, score: Math.floor(this.score)})
-  if (this.score > 20) {
-    if(confirm("GAME OVER." + "\n" + this.name +"Your Score is: " + Math.floor(this.score) + "\n" + "Play again?")){
-      // this.savePunctuation();
-      this.reset();
-      this.start();
-      printRanking();
-
-    }
-  }else {if(confirm("GAME OVER." + "\n" + this.name + "Your Score is: " + Math.floor(this.score) + "\n" + "Play again?")){
+  if(confirm("GAME OVER." + "\n" + this.name + "Your Score is: " + Math.floor(this.score) + "\n" + "Play again?")){
     // this.savePunctuation();
     this.reset();
     this.start();
     printRanking();
   }
-}
 };
 
 Game.prototype.gameWin = function() {
@@ -99,6 +103,7 @@ Game.prototype.gameWin = function() {
 Game.prototype.reset = function() {
   this.background = new Background(this);
   this.player = new Player(this);
+  this.darthvader = new DarthVader(this);
   this.framesCounter = 0;
   this.obstacles = [];
   this.torret = [];
@@ -157,6 +162,11 @@ Game.prototype.generateTorret = function() {
   this.torret.push(new Torret(this));
 };
 
+// Game.prototype.destroyTorret = function() {
+//   this.torret = this.bullets.filter(function(torret) {
+//     return torret = "null";
+//   });
+// };
 
 Game.prototype.shootTorret = function() {
   if (this.torret && this.torret.length > 0) {
@@ -173,20 +183,19 @@ Game.prototype.draw = function() {
   this.background.draw();
   this.obstacles.forEach(function(obstacle) { obstacle.draw(); });
   this.drawScore();  
-  this.player.draw();
   this.torret.forEach(function(torret) { torret.draw(); });
+  this.darthvader.draw();
 
-
+  this.player.draw();
 };
 
 Game.prototype.moveAll = function() {
   this.background.move();
   this.obstacles.forEach(function(obstacle) { obstacle.move(); });
-  this.player.move();
   this.torret.forEach(function(torret) { torret.move(); });
+  this.darthvader.move();
 
-
-
+  this.player.move();
 };
 
 Game.prototype.drawScore = function() {

@@ -1,7 +1,7 @@
 function Obstacle(game) {
   this.game = game;
 
-  this.w = Math.floor((Math.random()*200)+100);
+  this.w = Math.floor((Math.random()*180)+80);
   this.h = 40;
 
   this.dx = 0;

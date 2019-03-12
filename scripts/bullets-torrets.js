@@ -3,7 +3,7 @@ function BulletTorrets(game, x, y) {
 
   this.x = x;
   this.y = y;
-
+  this.xr = 530;
   //this.r = 15;
   this.w = 5;
   this.h = 10;
@@ -17,9 +17,11 @@ BulletTorrets.prototype.draw = function() {
   this.game.ctx.beginPath();
   this.game.ctx.fillStyle = "yellow";
   this.game.ctx.fillRect(this.x, this.y + 50, this.w, this.h);
-
+  // this.game.ctx.fillStyle = "yellow";
+  // this.game.ctx.fillRect(this.xr, this.y + 50, this.w, this.h);
   // this.game.ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
   //this.game.ctx.fill();
+  
   this.game.ctx.closePath();
 }
 
@@ -29,7 +31,7 @@ BulletTorrets.prototype.move = function() {
   // this.vy += this.gravity; 
   this.y += this.vy;
 
-  if(this.x > this.game.player.x) {
+  if(this.x >= this.game.player.x + 27) {
     this.x -= this.vx;
   } else {
     this.x += this.vx;
