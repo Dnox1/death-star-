@@ -25,16 +25,16 @@ function DarthVader(game) {
   this.arrayBullets = [];
 
 
-  this.setListeners();
+  // this.setListeners();
 }
 
-// var TOP_KEY = 38;
-var D_KEY = 68
-var W_KEY = 87
-var S_KEY = 83
-var A_KEY = 65
-var Z_KEY = 90
-var PAUSE = 80
+// // var TOP_KEY = 38;
+// var D_KEY = 68
+// var W_KEY = 87
+// var S_KEY = 83
+// var A_KEY = 65
+// var Z_KEY = 90
+// var PAUSE = 80
 
 DarthVader.prototype.draw = function() {
   // Documentación drawImage:
@@ -63,33 +63,41 @@ DarthVader.prototype.draw = function() {
   });
 };
 
-DarthVader.prototype.setListeners = function() {
-  document.onkeydown = function(event) {
-    if (event.keyCode === D_KEY && this.x < this.game.canvas.width) {
-      this.x += 10;
-      this.img.frameIndex = 1      
-    } else if (event.keyCode === A_KEY && this.x > 0) {
-      this.x -= 5;
-      this.img.frameIndex = 2
-    } else if (event.keyCode === W_KEY && this.y > 600) {
-      this.y -= 5;
-    } else if (event.keyCode === S_KEY && this.y < 800) {
-      this.y += 10;
-    } else if (event.keyCode == Z_KEY) {
-      this.shoot();
-    } 
-    else if (event.keyCode == PAUSE) {
-      if(confirm("Game Paused, Resume?")) {
-      }
-    }
-  }.bind(this);
+// DarthVader.prototype.right = function() {
+//   this.x += 5;
+//   this.img.frameIndex = 1      
+// }
 
-//   document.onkeyup = function(event){
-//     if (event.keyCode === RIGHT_KEY || event.keyCode === LEFT_KEY) {
-//     this.img.frameIndex = 0      
+DarthVader.prototype.moveP = function() {
+
+  if(this.isMovingRight === true) { this.x += 5; this.img.frameIndex = 1 }
+  if(this.isMovingLeft  === true) { this.x -= 5; this.img.frameIndex = 2 }
+  if(this.isMovingUp    === true) { this.y -= 2; }
+  if(this.isMovingDown  === true) { this.y += 2; }
+}
+    //  else if (event.keyCode === A_KEY && this.x > 0) {
+//       this.x -= 5;
+//       this.img.frameIndex = 2
+//     } else if (event.keyCode === W_KEY && this.y > 600) {
+//       this.y -= 5;
+//     } else if (event.keyCode === S_KEY && this.y < 800) {
+//       this.y += 10;
+//     } else if (event.keyCode == Z_KEY) {
+//       this.shoot();
+//     } 
+//     else if (event.keyCode == PAUSE) {
+//       if(confirm("Game Paused, Resume?")) {
+//       }
 //     }
 //   }.bind(this);
-};
+
+// DarthVader.prototype.setListenersup = function(event) {
+//   if (event.keyCode === D_KEY || event.keyCode === A_KEY) {
+//   this.img.frameIndex = 0      
+//   }
+// }.bind(this);
+
+
 DarthVader.prototype.shoot = function() {
   var dBullet = new Darthbullet(this.game, this.x, this.y - this.h);
   this.arrayBullets.push(dBullet);
@@ -123,6 +131,8 @@ DarthVader.prototype.move = function() {
   //   this.vy += gravity;
   //   this.y += this.vy;
   // }
+  // if ((this.y >this.game.canvas.height)) {
+  //    this.y = this.y--}
   if ((this.x + this.h) >= this.game.canvas.width) {
     this.x = this.game.canvas.width - this.h}
 }

@@ -18,23 +18,24 @@ function Player(game) {
   this.img.frameIndex = 0;
 
   // medidas de la imagen a representar en el canvas
-  this.w = 54;
-  this.h = 50;
+  this.w = 44;
+  this.h = 40;
 
   this.vx = 1;
+  
 
   this.bullets = [];
 
-  this.setListeners();
+  // this.setListeners();
 }
 
-// var TOP_KEY = 38;
-var RIGHT_KEY = 39
-var UP_KEY = 38
-var DOWN_KEY = 40
-var LEFT_KEY = 37
-var SPACE = 32
-var PAUSE = 80
+// // var TOP_KEY = 38;
+// var RIGHT_KEY = 39
+// var UP_KEY = 38
+// var DOWN_KEY = 40
+// var LEFT_KEY = 37
+// var SPACE = 32
+// var PAUSE = 80
 
 Player.prototype.draw = function() {
   // Documentación drawImage:
@@ -52,6 +53,7 @@ Player.prototype.draw = function() {
   );
 
   this.animateImg();
+  
 
   this.bullets = this.bullets.filter(function(bullet) {
     return bullet.y > 0;
@@ -63,32 +65,48 @@ Player.prototype.draw = function() {
   });
 };
 
-Player.prototype.setListeners = function() {
-  document.onkeydown = function(event) {
-    if (event.keyCode === RIGHT_KEY && this.x < this.game.canvas.width) {
-      this.x += 20;
-      this.img.frameIndex = 1      
-    } else if (event.keyCode === LEFT_KEY && this.x > 0) {
-      this.x -= 10;
-      this.img.frameIndex = 2
-    } else if (event.keyCode === UP_KEY && this.y > 100) {
-      this.y -= 10;
-    } else if (event.keyCode === DOWN_KEY && this.y < 700) {
-      this.y += 20;
-    } else if (event.keyCode == SPACE) {
-      this.shoot();
-    } else if (event.keyCode == PAUSE) {
-      if(confirm("Game Paused, Resume?")) {
-      }
-    }
-  }.bind(this);
+Player.prototype.moveP = function() {
 
-  document.onkeyup = function(event){
-    if (event.keyCode === RIGHT_KEY || event.keyCode === LEFT_KEY) {
-    this.img.frameIndex = 0      
-    }
-  }.bind(this);
-};
+  if(this.isMovingRight === true && this.x+this.w < this.game.canvas.width) { 
+    this.img.frameIndex = 1; 
+    this.x += 10; 
+  } 
+  if(this.isMovingLeft  === true && this.x > 0) { 
+    this.x -= 10; 
+    this.img.frameIndex = 2; 
+  }
+  if(this.isMovingUp    === true) { this.y -= 5; }
+  if(this.isMovingDown  === true) { this.y += 5; }
+  if(this.isMovingRight === false) { this.img.frameIndex = 0 }
+  if(this.isMovingLeft  === false) { this.img.frameIndex = 0 }
+}
+// }
+// Player.prototype.right = function() {
+//   if (this.x < this.game.canvas.width) {
+//   this.x += 20;
+//   this.img.frameIndex = 1
+  // }
+
+//     } else if (event.keyCode === LEFT_KEY && this.x > 0) {
+//       this.x -= 10;
+//       this.img.frameIndex = 2
+//     } else if (event.keyCode === UP_KEY && this.y > 100) {
+//       this.y -= 10;
+//     } else if (event.keyCode === DOWN_KEY && this.y < 500) {
+//       this.y += 20;
+//     } else if (event.keyCode == SPACE) {
+//       this.shoot();
+//     } else if (event.keyCode == PAUSE) {
+//       if(confirm("Game Paused, Resume?")) { }
+//     }
+//   }.bind(this);
+  
+// Player.prototype.setListenersup = function(event) {
+//     if (event.keyCode === RIGHT_KEY || event.keyCode === LEFT_KEY) {
+//     this.img.frameIndex = 0      
+//     }
+//   }.bind(this);
+
 
 
 Player.prototype.shoot = function() {

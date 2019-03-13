@@ -8,7 +8,7 @@ function Darthbullet(game, x, y) {
   this.w = 5;
   this.h = 10;
   this.vx = 0;
-  this.vy = 3;
+  this.vy = 2;
 
   //this.gravity = 0;
 }
