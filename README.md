@@ -25,6 +25,9 @@
 
 <p align="center">Slider: https://slides.com/dnox/deck/live#/</p>
 
+<p align="center">Let's play: https://github.com/Dnox1/death-star-</p>
+
+
 
 
 
