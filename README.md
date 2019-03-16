@@ -25,7 +25,11 @@
 
 <p align="center">Slider: https://slides.com/dnox/deck/live#/</p>
 
+<p align="center">Trello: https://trello.com/b/fqFlgABJ/deathstar</p>
+
 <p align="center">Let's play: https://dnox1.github.io/death-star-/</p>
+
+
 
 
 
