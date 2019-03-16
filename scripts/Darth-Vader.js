@@ -23,7 +23,6 @@ function DarthVader(game) {
   this.vx = 1;
 
   this.arrayBullets = [];
-
   this.isMovingRight = false;
   this.isMovingLeft = false;
   this.isMovingUp = false;
@@ -105,8 +104,14 @@ DarthVader.prototype.moveP = function() {
 
 
 DarthVader.prototype.shoot = function() {
+  
   var dBullet = new Darthbullet(this.game, this.x, this.y - this.h);
-  this.arrayBullets.push(dBullet);
+  
+
+  if (Math.floor(this.game.score)*10 % 3 === 0) {
+    this.arrayBullets.push(dBullet);  
+  console.log(this.game.score + " dv");
+  }
 };
 
 DarthVader.prototype.animateImg = function() {

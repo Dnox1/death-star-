@@ -23,6 +23,10 @@
 <br>
 <p align="center">bonus: https://www.youtube.com/watch?v=KuKqcfO31is</p>
 
+<p align="center">Slider: https://slides.com/dnox/deck/live#/</p>
+
+
+
 
 
 

@@ -16,6 +16,7 @@ Game.prototype.start = function () {
   this.interval = setInterval(function () {
     this.clear();
     this.framesCounter++;
+   
 
     // controlamos que frameCounter no sea superior a 1000
     if (this.framesCounter > 10000) {
@@ -36,7 +37,11 @@ Game.prototype.start = function () {
     }
 
     this.score += 0.01;
-    if (this.score >= 5) {
+    
+    console.log(Math.floor(this.score) + " score");
+
+
+    if (this.score >= 50) {
       this.gameWin();
     }
 
@@ -91,13 +96,12 @@ Game.prototype.start = function () {
 
     // // this.torret.forEach(function(torret) {
     if (this.isCollision(this.player.bullets, this.torret)) {
-      this.score++;
+      this.score+=1;
     }
     // console.log("colision");
     // this.destroyTorret(this.torret);
     // }
     // }.bind(this));
-    
 
   }.bind(this), 1000 / this.fps);
 };
