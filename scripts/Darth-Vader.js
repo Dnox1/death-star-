@@ -24,6 +24,10 @@ function DarthVader(game) {
 
   this.arrayBullets = [];
 
+  this.isMovingRight = false;
+  this.isMovingLeft = false;
+  this.isMovingUp = false;
+  this.isMovingDown = false;
 
   // this.setListeners();
 }
@@ -70,10 +74,12 @@ DarthVader.prototype.draw = function() {
 
 DarthVader.prototype.moveP = function() {
 
-  if(this.isMovingRight === true) { this.x += 5; this.img.frameIndex = 1 }
-  if(this.isMovingLeft  === true) { this.x -= 5; this.img.frameIndex = 2 }
-  if(this.isMovingUp    === true) { this.y -= 2; }
-  if(this.isMovingDown  === true) { this.y += 2; }
+  if(this.isMovingRight === true && this.x+this.w < this.game.canvas.width) { this.x += 5; this.img.frameIndex = 1 }
+  if(this.isMovingLeft  === true && this.x > 0) { this.x -= 5; this.img.frameIndex = 2 }
+  if(this.isMovingUp    === true && this.y > 550) { this.y -= 2; }
+  if(this.isMovingDown  === true && this.y < 750) { this.y += 2; }
+  if(this.isMovingRight === false) { this.img.frameIndex = 0 }
+  if(this.isMovingLeft  === false) { this.img.frameIndex = 0 }
 }
     //  else if (event.keyCode === A_KEY && this.x > 0) {
 //       this.x -= 5;

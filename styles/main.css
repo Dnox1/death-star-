@@ -15,7 +15,7 @@ h1 {
 h2 {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 1.8rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgb(61, 58, 52);;
 }
 
 p {
@@ -68,23 +68,51 @@ ol li:nth-child(3) {
   margin-bottom: 50px;
 }
 
-#player, #dificult{
+/* #player, #dificult{
   display: inline-flex;
   align-content: space-between;
   font-weight: bold;  
+} */
+
+#player {
+  width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  display: inline-flex;
+  align-content: space-between;
+  font-weight: bold; 
+    background-color: rgba(255, 255, 255, 0.5)
+
 }
 
-label {
-  width: 140px;;
-  margin: 0px 50px;
-  text-align: center;
-  line-height: 0em;
-  
+#player p {
+  color: rgb(61, 58, 52);
+  font-size: 1.5rem;
+}
+.player-box {
+  width: 380px;
+  padding: 10px;
+}
+
+.player-box p {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.luke {
+  text-align: right;
+}
+.dv {
+  text-align: left;
+}
+.nombre {
+  height: 50px;;
 }
 #player img {
   width: 50px;
   height: 55px;
   margin-left: 10px;  
+  padding: 0 auto;
 }
 
 
@@ -100,10 +128,25 @@ label {
   height: 800px;
   margin: 20px;
   margin-right: 70px;
+  background-color: rgba(255, 255, 255, 0.5)
 
 }
+
  #name {
-   margin: 20px;
+  height: 30px;
+  margin: 20px;
+ }
+
+ #start-button {
+  height: 37px;
+  width: 150px;
+  margin: 0px;
+  border-color: orange;
+  background-color: orange;
+ }
+
+ .start h2 {
+   color: orange;
  }
 /* .game-intro p {
   font-size: 18px;

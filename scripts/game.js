@@ -36,7 +36,7 @@ Game.prototype.start = function () {
     }
 
     this.score += 0.01;
-    if (this.score >= 100) {
+    if (this.score >= 5) {
       this.gameWin();
     }
 
@@ -58,11 +58,35 @@ Game.prototype.start = function () {
       this.gameOver();
     }
 
+    // if (this.isCollision(this.obstacles, this.darthvader.arrayBullets)) {
+    //   this.gameOver();
+    // }
+
+    // this.obstacles.forEach(function (obstacle) {
+    //   if (this.isCollision(this.darthvader.arrayBullets, obstacle)) {
+    //     this.gameOver();
+    //   }
+    // }.bind(this));
+
+    
+    // this.darthvader.arrayBullets.forEach(function (dBullet) {
+    //   if (this.isCollision(this.obstacles, this.darthvader.arrayBullets.dBullet)) {
+    //     this.gameOver();
+    //   }
+    // }.bind(this));
+
     this.torret.forEach(function (torret) {
       if (this.isCollision(this.player, torret.bulletstorret)) {
         this.gameOver();
       }
     }.bind(this));
+
+
+    // this.torret.forEach(function (darthvader.arrayBullets) {
+    //   if (this.isCollision(this.player, this.darthvader.arrayBullets)) {
+    //     this.gameOver();
+    //   }
+    // }.bind(this));
 
 
     // // this.torret.forEach(function(torret) {
@@ -92,22 +116,25 @@ Game.prototype.gameOver = function () {
   ranking.push({
     name: this.name,
     score: Math.floor(this.score)
-  })
-  if (confirm("GAME OVER." + "\n" + this.name + "Your Score is: " + Math.floor(this.score) + "\n" + "Play again?")) {
+  });
+  printRanking();
+  document.getElementById("start-button").className = 'active';
+  if (confirm("GAME OVER." + "\n" + this.name + " Your Score is: " + Math.floor(this.score) + "\n" + "Play again?")) {
     // this.savePunctuation();
     this.reset();
     this.start();
-    printRanking();
   }
 };
 
 Game.prototype.gameWin = function () {
   this.stop();
-  alert("Tira la Bomba!");
+  alert("YOU WON!!!" + "\n" + "you have destroyed" + "\n" + "the star of death");
+  document.getElementById("start-button").className = 'active';
 
 };
 
 Game.prototype.reset = function () {
+  document.getElementById("start-button").className = 'noactive';
   this.background = new Background(this);
   this.player = new Player(this);
   this.darthvader = new DarthVader(this);
@@ -143,6 +170,8 @@ var S_KEY = 83
 var A_KEY = 65
 var Z_KEY = 90
 
+
+
 Game.prototype.listenKeys = function () {
   document.addEventListener('keydown', function(e) {
     var myKeyCode = e.keyCode;
@@ -175,7 +204,8 @@ Game.prototype.listenKeys = function () {
       this.darthvader.isMovingDown = true;
         break
       case 90:
-      this.darthvader.shoot();
+      if (this.darthvader.isMovingRight == false &&  this.darthvader.isMovingLeft == false && this.darthvader.isMovingUp == false &&  this.darthvader.isMovingDown == false) {
+      this.darthvader.shoot();}
         break
       case 80:
         alert("Game Paused");

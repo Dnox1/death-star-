@@ -75,8 +75,8 @@ Player.prototype.moveP = function() {
     this.x -= 10; 
     this.img.frameIndex = 2; 
   }
-  if(this.isMovingUp    === true) { this.y -= 5; }
-  if(this.isMovingDown  === true) { this.y += 5; }
+  if(this.isMovingUp    === true && this.y > 100) { this.y -= 5; }
+  if(this.isMovingDown  === true && this.y < 500) { this.y += 5; }
   if(this.isMovingRight === false) { this.img.frameIndex = 0 }
   if(this.isMovingLeft  === false) { this.img.frameIndex = 0 }
 }
